@@ -43,8 +43,9 @@ class Stemmer {
         return Stemmer._internal(locale, SnowballStemmer(Algorithm.english));
     }
     throw ArgumentError.value(
-      'The requested locale with language code ${locale.languageCode}'
-      ' is not currently supported.',
+      locale.languageCode,
+      'locale.languageCode',
+      'No stemmer available for language',
     );
   }
 

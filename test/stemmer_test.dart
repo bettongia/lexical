@@ -78,16 +78,46 @@ void main() {
   });
 
   group('Stemmer — unsupported locales', () {
-    test('French locale throws ArgumentError', () {
-      expect(() => Stemmer(Locale.parse('fr')), throwsArgumentError);
+    test('French locale throws ArgumentError with language code as value', () {
+      expect(
+        () => Stemmer(Locale.parse('fr')),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.invalidValue,
+            'invalidValue',
+            equals('fr'),
+          ),
+        ),
+      );
     });
 
-    test('German locale throws ArgumentError', () {
-      expect(() => Stemmer(Locale.parse('de')), throwsArgumentError);
+    test('German locale throws ArgumentError with language code as value', () {
+      expect(
+        () => Stemmer(Locale.parse('de')),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.invalidValue,
+            'invalidValue',
+            equals('de'),
+          ),
+        ),
+      );
     });
 
-    test('unknown language code throws ArgumentError', () {
-      expect(() => Stemmer(Locale.parse('xx')), throwsArgumentError);
-    });
+    test(
+      'unknown language code throws ArgumentError with descriptive message',
+      () {
+        expect(
+          () => Stemmer(Locale.parse('xx')),
+          throwsA(
+            isA<ArgumentError>().having(
+              (e) => e.message,
+              'message',
+              contains('No stemmer available'),
+            ),
+          ),
+        );
+      },
+    );
   });
 }

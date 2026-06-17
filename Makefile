@@ -16,11 +16,11 @@ cicd: default
 # END: Primary tasks
 
 format:
-	dart format lib/ test/ hook/ tool/ example/
+	dart format lib/ test/ tool/ example/
 .PHONY: format
 
 format_check:
-	dart format --output=none --set-exit-if-changed lib/ test/ hook/ tool/
+	dart format --output=none --set-exit-if-changed lib/ test/ tool/
 .PHONY: format_check
 
 analyze:
