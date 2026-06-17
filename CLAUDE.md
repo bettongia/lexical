@@ -51,7 +51,8 @@ betto_lexical/
 │       └── stopwords/                      # Generated: one part file per language
 │           └── <lang>.g.dart
 ├── test/
-│   ├── default_tokenizer_test.dart
+│   ├── default_tokenizer_test.dart       # VM-only (@TestOn('vm'))
+│   ├── default_tokenizer_web_test.dart   # Browser-only (@TestOn('browser'))
 │   ├── stemmer_test.dart
 │   └── stopwords_test.dart
 ├── tool/
@@ -110,7 +111,7 @@ Core v0 features are implemented:
   via a conditional export.
 - **Stemming** — `Stemmer` class backed by the Snowball algorithm. English only.
 - **Stop words** — `getStopWords(Locale)` backed by a generated `Stopwords`
-  enum covering 57 languages sourced from stopwords-iso.
+  enum covering 58 languages sourced from stopwords-iso.
 
 ## Architecture
 
