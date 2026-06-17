@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@TestOn('vm')
+library;
+
 import 'package:betto_lexical/betto_lexical.dart';
 import 'package:test/test.dart';
 

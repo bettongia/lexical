@@ -75,7 +75,16 @@ part 'stopwords/yo.g.dart';
 part 'stopwords/zh.g.dart';
 part 'stopwords/zu.g.dart';
 
-/// IANA language extensions
+/// Stop-word sets for 58 languages, keyed by IETF language code.
+///
+/// Obtain an instance via [getStopWords]:
+///
+/// ```dart
+/// final stopWords = getStopWords(Locale.parse('en'));
+/// final filtered = tokens
+///     .where((t) => !stopWords.listing.contains(t))
+///     .toList();
+/// ```
 enum Stopwords {
   af('af', _afStopwords),
   ar('ar', _arStopwords),
@@ -138,7 +147,9 @@ enum Stopwords {
 
   const Stopwords(this.languageCode, this.listing);
 
+  /// The set of stop words for this language.
   final Set<String> listing;
 
+  /// The IETF language code identifying this stop-word set (e.g. `'en'`, `'fr'`).
   final String languageCode;
 }

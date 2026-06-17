@@ -37,12 +37,12 @@ import 'package:intl/locale.dart';
 
 void main() {
   final corpus = {
-    'fox':     'The quick brown fox jumps over the lazy dog.',
-    'chase':   'The dog chased the fox through the open field.',
+    'fox': 'The quick brown fox jumps over the lazy dog.',
+    'chase': 'The dog chased the fox through the open field.',
     'library': 'A quiet cat sleeps in the warm library.',
-    'books':   'Libraries contain many books about running and jumping.',
-    'search':  'Full-text search engines build inverted indexes from documents.',
-    'index':   'An inverted index maps terms to the documents that contain them.',
+    'books': 'Libraries contain many books about running and jumping.',
+    'search': 'Full-text search engines build inverted indexes from documents.',
+    'index': 'An inverted index maps terms to the documents that contain them.',
   };
 
   final locale = Locale.parse('en');

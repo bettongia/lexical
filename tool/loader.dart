@@ -84,17 +84,32 @@ void buildStopwordRegistry(
         Enum(
           (eb) => eb
             ..name = 'Stopwords'
-            ..docs.add('/// IANA language extensions')
+            ..docs.addAll([
+              '/// Stop-word sets for 58 languages, keyed by IETF language code.',
+              '///',
+              '/// Obtain an instance via [getStopWords]:',
+              '///',
+              '/// ```dart',
+              '/// final stopWords = getStopWords(Locale.parse(\'en\'));',
+              '/// final filtered = tokens',
+              '///     .where((t) => !stopWords.listing.contains(t))',
+              '///     .toList();',
+              '/// ```',
+            ])
             ..fields.addAll([
               Field(
                 (b) => b
                   ..name = 'listing'
+                  ..docs.add('/// The set of stop words for this language.')
                   ..type = refer('Set<String>')
                   ..modifier = FieldModifier.final$,
               ),
               Field(
                 (b) => b
                   ..name = 'languageCode'
+                  ..docs.add(
+                    '/// The IETF language code identifying this stop-word set (e.g. `\'en\'`, `\'fr\'`).',
+                  )
                   ..type = refer('String')
                   ..modifier = FieldModifier.final$,
               ),

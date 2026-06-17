@@ -15,7 +15,7 @@
 /// Demonstrates tokenization with betto_lexical.
 ///
 /// Run with:
-///   dart run example/tokenise.dart
+///   dart run example/tokenize.dart
 library;
 
 import 'package:betto_lexical/betto_lexical.dart';

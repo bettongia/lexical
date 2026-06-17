@@ -210,7 +210,7 @@ language is not in the bundled data).
 enum Stopwords {
   af('af', _afStopwords),
   ar('ar', _arStopwords),
-  // …57 more cases…
+  // …55 more cases…
   zu('zu', _zuStopwords);
 
   const Stopwords(this.languageCode, this.listing);

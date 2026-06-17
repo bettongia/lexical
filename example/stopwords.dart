@@ -32,17 +32,23 @@ void main() {
   // Filtering function words from a token list improves the signal-to-noise
   // ratio for indexing, search, and text analysis tasks.
   final tokens = [
-    'the', 'quick', 'brown', 'fox', 'jumps',
-    'over', 'the', 'lazy', 'dog',
+    'the',
+    'quick',
+    'brown',
+    'fox',
+    'jumps',
+    'over',
+    'the',
+    'lazy',
+    'dog',
   ];
-  final contentWords =
-      tokens.where((t) => !en.listing.contains(t)).toList();
+  final contentWords = tokens.where((t) => !en.listing.contains(t)).toList();
 
   print('Input tokens:    $tokens');
   print('After filtering: $contentWords');
   print('');
 
-  // Stop-word sets are available for 57 languages.
+  // Stop-word sets are available for 58 languages.
   // Switch locale to filter in another language.
   final fr = getStopWords(Locale.parse('fr'));
   final french = ['le', 'renard', 'brun', 'rapide', 'saute'];
@@ -54,6 +60,10 @@ void main() {
 
   // You can also access the enum value directly by name when the language
   // code is known at compile time.
-  print('"is" is a stop word in English: ${Stopwords.en.listing.contains('is')}');
-  print('"fox" is a stop word in English: ${Stopwords.en.listing.contains('fox')}');
+  print(
+    '"is" is a stop word in English: ${Stopwords.en.listing.contains('is')}',
+  );
+  print(
+    '"fox" is a stop word in English: ${Stopwords.en.listing.contains('fox')}',
+  );
 }

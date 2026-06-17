@@ -16,7 +16,7 @@ cicd: default
 # END: Primary tasks
 
 format:
-	dart format lib/ test/ hook/ tool/
+	dart format lib/ test/ hook/ tool/ example/
 .PHONY: format
 
 format_check:
@@ -73,3 +73,19 @@ clean:
 generate_stopwords:
 	dart run tool/loader.dart
 .PHONY: generate_stopwords
+
+web_test:
+	dart pub get
+	dart test -p chrome
+.PHONY: web_test
+
+# Minimal CI targets for platforms that lack lcov / Pandoc / addlicense.
+cicd_windows:
+	dart pub get
+	dart test
+.PHONY: cicd_windows
+
+cicd_macos:
+	dart pub get
+	dart test
+.PHONY: cicd_macos

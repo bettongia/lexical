@@ -18,6 +18,27 @@ import 'stopwords.g.dart';
 
 export 'stopwords.g.dart' show Stopwords;
 
+/// Returns the [Stopwords] set for the given [locale].
+///
+/// Looks up the stop-word set by [Locale.languageCode]. 58 languages are
+/// supported; see [Stopwords] for the full list.
+///
+/// Throws [ArgumentError] if no stop-word set exists for the given language
+/// code.
+///
+/// ```dart
+/// final stopWords = getStopWords(Locale.parse('en'));
+/// final tokens = ['the', 'quick', 'brown', 'fox'];
+/// final content = tokens.where((t) => !stopWords.listing.contains(t)).toList();
+/// ```
 Stopwords getStopWords(Locale locale) {
-  return Stopwords.values.byName(locale.languageCode);
+  try {
+    return Stopwords.values.byName(locale.languageCode);
+  } on ArgumentError {
+    throw ArgumentError.value(
+      locale.languageCode,
+      'locale.languageCode',
+      'No stop-word set available for language',
+    );
+  }
 }

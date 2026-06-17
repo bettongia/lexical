@@ -15,6 +15,16 @@
 import 'package:intl/locale.dart';
 import 'package:snowball_stemmer/snowball_stemmer.dart';
 
+/// Reduces words to their base form (stem) using the Snowball algorithm.
+///
+/// Currently supports English (`en`). Construct with a [Locale] and call
+/// [stem] on individual tokens.
+///
+/// ```dart
+/// final stemmer = Stemmer(Locale.parse('en'));
+/// print(stemmer.stem('libraries')); // → 'librari'
+/// print(stemmer.stem('running'));   // → 'run'
+/// ```
 class Stemmer {
   final Locale _locale;
   final SnowballStemmer _stemmer;
@@ -23,6 +33,10 @@ class Stemmer {
     : _locale = locale,
       _stemmer = stemmer;
 
+  /// Creates a [Stemmer] for the given [locale].
+  ///
+  /// Throws [ArgumentError] if the locale's language code is not supported.
+  /// Currently supported: `en` (English).
   factory Stemmer(Locale locale) {
     switch (locale.languageCode) {
       case 'en':
@@ -34,9 +48,14 @@ class Stemmer {
     );
   }
 
+  /// Returns the stem of [word].
+  ///
+  /// The result is a normalised base form suitable for index lookups; it is
+  /// not guaranteed to be a valid dictionary word.
   String stem(String word) {
     return _stemmer.stem(word);
   }
 
+  /// The IETF language code this stemmer was created for (e.g. `'en'`).
   String get languageCode => _locale.languageCode;
 }

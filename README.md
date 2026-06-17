@@ -13,7 +13,7 @@ open-source family.
 - **Stemmer** — Snowball-based stemmer via `Stemmer(locale)`. Currently
   supports English (`en`).
 - **Stop words** — `getStopWords(locale)` returns the `Stopwords` set for a
-  locale. Covers 60+ languages.
+  locale. Covers 58 languages.
 
 ## Platform support
 
@@ -68,7 +68,7 @@ import 'package:intl/locale.dart';
 
 final stopWords = getStopWords(Locale.parse('en'));
 final tokens = ['the', 'quick', 'brown', 'fox'];
-final filtered = tokens.where((t) => !stopWords.words.contains(t)).toList();
+final filtered = tokens.where((t) => !stopWords.listing.contains(t)).toList();
 // → ['quick', 'brown', 'fox']
 ```
 

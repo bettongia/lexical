@@ -17,8 +17,11 @@ import 'package:betto_lexical/betto_lexical.dart' show getStopWords;
 import 'package:test/test.dart';
 
 void main() {
-  final defaultStopwords = getStopWords(Locale.fromSubtags(languageCode: 'en'));
-  group('defaultStopwords', () {
+  group('English stop words', () {
+    late final defaultStopwords = getStopWords(
+      Locale.fromSubtags(languageCode: 'en'),
+    );
+
     test('contains common function words', () {
       for (final word in ['the', 'is', 'and', 'a', 'an', 'in', 'of', 'to']) {
         expect(defaultStopwords.listing, contains(word));
@@ -29,6 +32,56 @@ void main() {
       for (final word in ['dog', 'fast', 'database', 'search']) {
         expect(defaultStopwords.listing, isNot(contains(word)));
       }
+    });
+
+    test('languageCode is en', () {
+      expect(defaultStopwords.languageCode, equals('en'));
+    });
+
+    test('listing is non-empty', () {
+      expect(defaultStopwords.listing, isNotEmpty);
+    });
+  });
+
+  group('French stop words', () {
+    late final fr = getStopWords(Locale.fromSubtags(languageCode: 'fr'));
+
+    test('contains common French function words', () {
+      for (final word in ['le', 'la', 'les', 'de', 'un', 'une']) {
+        expect(fr.listing, contains(word));
+      }
+    });
+
+    test('languageCode is fr', () {
+      expect(fr.languageCode, equals('fr'));
+    });
+  });
+
+  group('unsupported locale', () {
+    test('throws ArgumentError for unknown language code', () {
+      expect(
+        () => getStopWords(Locale.fromSubtags(languageCode: 'xx')),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.invalidValue,
+            'invalidValue',
+            equals('xx'),
+          ),
+        ),
+      );
+    });
+
+    test('ArgumentError message names the bad language code', () {
+      expect(
+        () => getStopWords(Locale.fromSubtags(languageCode: 'zz')),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            contains('No stop-word set'),
+          ),
+        ),
+      );
     });
   });
 }
