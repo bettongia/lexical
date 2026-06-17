@@ -45,12 +45,12 @@ betto_lexical (public API)
     └── Stopwords enum        (generated; one Set<String> per language)
 ```
 
-Platform branching for the default tokenizer is resolved at compile time via a
+Platform branching for the default tokeniser is resolved at compile time via a
 conditional export in `lib/betto_lexical.dart`:
 
 ```dart
-export 'src/default_tokenizer_native.dart'
-    if (dart.library.js_interop) 'src/default_tokenizer_web.dart'
+export 'src/default_tokeniser_native.dart'
+    if (dart.library.js_interop) 'src/default_tokeniser_web.dart'
     show createDefaultTokenizer;
 ```
 
@@ -86,11 +86,11 @@ package. All implementations share a single method:
 
 ```dart
 abstract interface class Tokenizer {
-  List<String> tokenize(String text);
+  List<String> tokenise(String text);
 }
 ```
 
-`tokenize` returns a list of word tokens extracted from `text`. What counts as
+`tokenise` returns a list of word tokens extracted from `text`. What counts as
 a word boundary is implementation-specific (see below). An empty or
 whitespace-only input returns an empty list.
 
@@ -98,12 +98,12 @@ whitespace-only input returns an empty list.
 
 ### `RegExpTokenizer`
 
-A pure-Dart tokenizer that splits on a Unicode-aware regular expression. It
+A pure-Dart tokeniser that splits on a Unicode-aware regular expression. It
 works on all platforms with no native dependencies. Its word-boundary logic is
 tuned for Latin-script languages and is not suitable for scripts that do not
 use whitespace to delimit words (CJK, Thai, Lao, etc.).
 
-Use this tokenizer when:
+Use this tokeniser when:
 
 - FFI and `js_interop` are unavailable (e.g., pure-Dart server tools).
 - The input is guaranteed to be Latin-script only.
@@ -112,14 +112,14 @@ Use this tokenizer when:
 
 Delegates to the platform ICU library via FFI, implementing UAX #29 Unicode
 Text Segmentation. Handles CJK, Arabic, Thai, Devanagari, and all other
-Unicode scripts correctly. This is the tokenizer returned by
+Unicode scripts correctly. This is the tokeniser returned by
 `createDefaultTokenizer()` on native platforms.
 
 ### `BrowserTokenizer` (web only)
 
 Delegates to the browser's `Intl.Segmenter` API via `dart:js_interop`,
 providing the same UAX #29 quality as ICU without any Wasm or native bundling.
-This is the tokenizer returned by `createDefaultTokenizer()` on web.
+This is the tokeniser returned by `createDefaultTokenizer()` on web.
 
 ## Factory function
 
@@ -127,7 +127,7 @@ This is the tokenizer returned by `createDefaultTokenizer()` on web.
 Tokenizer createDefaultTokenizer()
 ```
 
-Returns the best available tokenizer for the current platform. On native this
+Returns the best available tokeniser for the current platform. On native this
 is `IcuTokenizer`; on web, `BrowserTokenizer`. Each call returns a new
 independent instance.
 
@@ -288,10 +288,10 @@ It exports:
 
 | Symbol | Origin | Description |
 |---|---|---|
-| `Tokenizer` | `betto_icu` | Abstract tokenizer interface |
-| `RegExpTokenizer` | `betto_icu` | Pure-Dart, all-platform tokenizer |
-| `IcuTokenizer` | `betto_icu` | UAX #29 tokenizer via system ICU (native) |
-| `BrowserTokenizer` | `betto_icu` | UAX #29 tokenizer via `Intl.Segmenter` (web) |
+| `Tokenizer` | `betto_icu` | Abstract tokeniser interface |
+| `RegExpTokenizer` | `betto_icu` | Pure-Dart, all-platform tokeniser |
+| `IcuTokenizer` | `betto_icu` | UAX #29 tokeniser via system ICU (native) |
+| `BrowserTokenizer` | `betto_icu` | UAX #29 tokeniser via `Intl.Segmenter` (web) |
 | `createDefaultTokenizer` | this package | Platform-selecting factory |
 | `Stemmer` | this package | Snowball-based morphological stemmer |
 | `getStopWords` | this package | Stop-word lookup by `Locale` |
@@ -333,8 +333,8 @@ explicitly before calling either function.
 Tests live in `test/` and are run with `make test` (delegates to `dart test`).
 The suite covers three areas:
 
-**`default_tokenizer_test.dart`** — `createDefaultTokenizer()`
-: Returns a working tokenizer; produces correct token lists for English,
+**`default_tokeniser_test.dart`** — `createDefaultTokenizer()`
+: Returns a working tokeniser; produces correct token lists for English,
   technical identifiers (hex values, camelCase), and non-Latin scripts
   (Japanese, Arabic, Thai). Handles empty and whitespace-only input. Each call
   to the factory returns an independent instance.

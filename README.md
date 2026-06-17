@@ -8,7 +8,7 @@ open-source family.
 
 - **Tokenizers** — `RegExpTokenizer` (pure Dart), `IcuTokenizer` (UAX #29 via
   system ICU, superior Unicode/CJK coverage), and `BrowserTokenizer` (web).
-  `createDefaultTokenizer()` selects the best tokenizer for the current
+  `createDefaultTokenizer()` selects the best tokeniser for the current
   platform automatically.
 - **Stemmer** — Snowball-based stemmer via `Stemmer(locale)`. Currently
   supports English (`en`).
@@ -41,8 +41,8 @@ dependencies:
 import 'package:betto_lexical/betto_lexical.dart';
 
 // Platform-aware default (IcuTokenizer on native, BrowserTokenizer on web).
-final tokenizer = createDefaultTokenizer();
-final tokens = tokenizer.tokenize('The quick brown fox');
+final tokeniser = createDefaultTokenizer();
+final tokens = tokeniser.tokenise('The quick brown fox');
 // → ['The', 'quick', 'brown', 'fox']
 
 // Pure-Dart alternative — works everywhere, English-oriented.
