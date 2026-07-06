@@ -14,7 +14,13 @@
 library;
 
 export 'package:betto_icu/betto_icu.dart'
-    show Tokenizer, RegExpTokenizer, IcuTokenizer, BrowserTokenizer;
+    show
+        Tokenizer,
+        OffsetTokenizer,
+        TokenSpan,
+        RegExpTokenizer,
+        IcuTokenizer,
+        BrowserTokenizer;
 export 'src/default_tokenizer_native.dart'
     if (dart.library.js_interop) 'src/default_tokenizer_web.dart'
     show createDefaultTokenizer;

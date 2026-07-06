@@ -2,6 +2,24 @@
 
 ## 0.1.0-dev.2
 
+### Stemming
+
+- `Stemmer` now supports 28 languages, up from just English: Arabic,
+  Armenian, Basque, Catalan, Danish, Dutch, English, Finnish, French,
+  German, Greek, Hindi, Hungarian, Indonesian, Irish, Italian, Lithuanian,
+  Nepali, Norwegian, Portuguese, Romanian, Russian, Serbian, Spanish,
+  Swedish, Tamil, Turkish, and Yiddish — every language
+  `package:snowball_stemmer` implements (excluding its generic `porter`
+  variant, an alternate English algorithm rather than a distinct language).
+  Unsupported language codes still throw `ArgumentError`, as before.
+
+### Tokenization
+
+- Re-exports `OffsetTokenizer` and `TokenSpan` from `betto_icu` (now pinned
+  to `^0.1.0-dev.2`) — a `Tokenizer` that also reports each token's
+  character offsets in the source text. Implemented by `IcuTokenizer` and
+  `RegExpTokenizer`.
+
 ## 0.1.0-dev.1
 
 Initial development release.
