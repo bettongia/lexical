@@ -8,29 +8,29 @@ open-source family.
 
 - **Tokenizers** — `RegExpTokenizer` (pure Dart), `IcuTokenizer` (UAX #29 via
   system ICU, superior Unicode/CJK coverage), and `BrowserTokenizer` (web).
-  `createDefaultTokenizer()` selects the best tokeniser for the current
-  platform automatically.
-- **Stemmer** — Snowball-based stemmer via `Stemmer(locale)`. Currently
-  supports English (`en`).
+  `createDefaultTokenizer()` selects the best tokeniser for the current platform
+  automatically.
+- **Stemmer** — Snowball-based stemmer via `Stemmer(locale)`. Currently supports
+  English (`en`).
 - **Stop words** — `getStopWords(locale)` returns the `Stopwords` set for a
   locale. Covers 58 languages.
 
 ## Platform support
 
-| Feature | Native (macOS / Linux / Windows / Android) | Web |
-|---|---|---|
-| `RegExpTokenizer` | ✅ | ✅ |
-| `IcuTokenizer` | ✅ (system ICU, no bundling) | — |
-| `BrowserTokenizer` | — | ✅ |
-| `createDefaultTokenizer()` | `IcuTokenizer` | `BrowserTokenizer` |
-| `Stemmer` | ✅ | ✅ |
-| `getStopWords` | ✅ | ✅ |
+| Feature                    | Native (macOS / Linux / Windows / Android) | Web                |
+| -------------------------- | ------------------------------------------ | ------------------ |
+| `RegExpTokenizer`          | ✅                                         | ✅                 |
+| `IcuTokenizer`             | ✅ (system ICU, no bundling)               | —                  |
+| `BrowserTokenizer`         | —                                          | ✅                 |
+| `createDefaultTokenizer()` | `IcuTokenizer`                             | `BrowserTokenizer` |
+| `Stemmer`                  | ✅                                         | ✅                 |
+| `getStopWords`             | ✅                                         | ✅                 |
 
 ## Installation
 
 ```yaml
 dependencies:
-  betto_lexical: ^0.1.0-dev.1
+  betto_lexical: ^0.1.0
 ```
 
 ## Usage
