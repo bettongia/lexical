@@ -2,7 +2,13 @@
 
 ## 0.1.0
 
-Stable release. Moved to Dart 3.13
+First stable release. The public API is unchanged from `0.1.0-dev.2` — see the
+entries below for the full feature set: tokenization (`createDefaultTokenizer`,
+`IcuTokenizer`, `BrowserTokenizer`, `RegExpTokenizer`, `OffsetTokenizer`),
+stemming in 28 languages, and stop-word sets for 58 languages.
+
+- Raised the minimum SDK to Dart 3.13 (`sdk: ^3.13.0`, up from `^3.12.0`).
+- `betto_icu` constraint moved to the stable `^0.1.0` (from `^0.1.0-dev.2`).
 
 ## 0.1.0-dev.2
 
